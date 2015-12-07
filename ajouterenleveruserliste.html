@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ajouter et enlever d'une liste</title>
+</head>
+<body>
+
+  <form>
+    <div>
+    <label for="chpNom" >Nom</label>
+      <input id="chpNom" />
+    </div>
+    <div>
+    <label for="chpPrenom" >Prénom</label>
+      <input id="chpPrenom" />
+    </div>
+  </form>
+    <button onclick="ajouteUser()" type="button">Ajouter</button>
+
+    <ul id="liste">
+      <li id="idli0">Jean Dupond <button onclick="retirer(0)" type="button">x</button></li>
+    </ul>
+
+</body>
+<script>
+  var users = [
+    {
+      nom:'Dupont',
+      prenom:'Jean'
+    }
+  ];
+
+  var compteurIndex = 0;
+
+  function ajouteUser() {
+    var nomNew = document.getElementById("chpNom").value;
+    var prenomNew = document.getElementById("chpPrenom").value;
+
+    var uL = document.getElementById("liste");
+    var nouveauLi = document.createElement('li');
+
+    compteurIndex++;
+
+    uL.appendChild(nouveauLi);
+    nouveauLi.id = "idli" + compteurIndex;
+    nouveauLi.innerHTML = prenomNew + " " + nomNew + ' <button onclick="retirer(' + compteurIndex + ')" type="button">x</button>';
+
+    users.push({nom:nomNew,prenom:prenomNew});
+  }
+
+  function retirer(compteurRetirer) {
+    var retireLi = document.getElementById("idli"+compteurRetirer);
+    retireLi.parentNode.removeChild(retireLi);
+  }
+
+
+</script>
+</html>
